@@ -1,6 +1,10 @@
+-- Drop the existing StateAvgs table
+DROP TABLE IF EXISTS StateAvgs;
+
+-- Recreate the StateAvgs table with the updated schema and data insertion
 CREATE TABLE StateAvgs (
     Index INTEGER PRIMARY KEY,
-	Year INTEGER,
+    Year INTEGER,
     State VARCHAR(255),
     Avg_Studio FLOAT,
     Avg_One_Bedroom FLOAT,
@@ -9,9 +13,9 @@ CREATE TABLE StateAvgs (
     Avg_Four_Bedroom FLOAT
 );
 
-INSERT INTO StateAvgs (Index,Year, State, Avg_Studio, Avg_One_Bedroom, Avg_Two_Bedroom, Avg_Three_Bedroom, Avg_Four_Bedroom)
+INSERT INTO StateAvgs (Index, Year, State, Avg_Studio, Avg_One_Bedroom, Avg_Two_Bedroom, Avg_Three_Bedroom, Avg_Four_Bedroom)
 SELECT
-	MIN(Index) AS Index,
+    ROW_NUMBER() OVER () AS Index,
     Year,
     State,
     AVG(Studio) AS Avg_Studio,
@@ -23,4 +27,9 @@ FROM
     Rent
 GROUP BY 
     Year, 
-    State;
+    State
+ORDER BY 
+    State, 
+    Year;
+	
+Select * from StateAvgs

@@ -26,6 +26,76 @@
       Plotly.newPlot("chart", data);
     }
 
+    // Call updatePlotly() when a change takes place to the DOM
+    //d3.selectAll("#selDataset").on("change", optionChanged);
+
+    // Function to filter the data based on the selected state and plot it
+    function optionChanged(state) {
+      // Fetch the data for the selected state
+      d3.json(`/api/stateavg/${state}`).then(filteredData => {
+        // Sort the data by year
+        filteredData.sort((a, b) => a.year - b.year);
+
+        // Extract years and average prices from the filtered data
+        const years = filteredData.map(d => d.year);
+        const avgStudioPrices = filteredData.map(d => d.avg_studio);
+        const avgOneBedroomPrices = filteredData.map(d => d.avg_one_bedroom);
+        const avgTwoBedroomPrices = filteredData.map(d => d.avg_two_bedroom);
+        const avgThreeBedroomPrices = filteredData.map(d => d.avg_three_bedroom);
+        const avgFourBedroomPrices = filteredData.map(d => d.avg_four_bedroom);
+
+        // Define traces for plotly
+        const tracestudio = {
+          x: years,
+          y: avgStudioPrices,
+          mode: 'lines+markers',
+          name: 'Avg Studio Bedroom Rent',
+          type: 'scatter'
+        };
+
+        const trace1 = {
+          x: years,
+          y: avgOneBedroomPrices,
+          mode: 'lines+markers',
+          name: 'Avg One Bedroom Rent',
+          type: 'scatter'
+        };
+
+
+        const trace2 = {
+          x: years,
+          y: avgTwoBedroomPrices,
+          mode: 'lines+markers',
+          name: 'Avg Two Bedroom Rent',
+          type: 'scatter'
+        };
+        const trace3 = {
+          x: years,
+          y: avgTwoBedroomPrices,
+          mode: 'lines+markers',
+          name: 'Avg Three Bedroom Rent',
+          type: 'scatter'
+        };
+        const trace4 = {
+          x: years,
+          y: avgTwoBedroomPrices,
+          mode: 'lines+markers',
+          name: 'Avg Four Bedroom Rent',
+          type: 'scatter'
+        };
+        // Plotly data and layout
+        const dataToPlot = [tracestudio,trace1, trace2,trace3,trace4];
+        const layout = {
+          title: `Average Rent Prices in ${state}`,
+          xaxis: { title: 'Year' },
+          yaxis: { title: 'Average Rent Price' }
+        };
+
+        // Plot the graph
+        Plotly.newPlot('chart', dataToPlot, layout);
+      });
+    }
+
     init();
   </script>
   <script src="static/states.js"></script>

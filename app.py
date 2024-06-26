@@ -114,7 +114,7 @@ def stateavg_by_state(state):
             StateAvgs.avg_two_bedroom,
             StateAvgs.avg_three_bedroom,
             StateAvgs.avg_four_bedroom
-        ).filter(StateAvgs.state == state).all()
+        ).filter(StateAvgs.state == state).order_by(StateAvgs.year).all()
 
         avg_rent = [
             {
