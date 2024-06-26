@@ -7,15 +7,52 @@
   <title>Rent Data Visualization</title>
   <script src="https://d3js.org/d3.v7.min.js"></script>
   <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f0f2f5;
+      margin: 0;
+      padding: 0;
+    }
+    .container {
+      width: 80%;
+      margin: 50px auto;
+      background: #ffffff;
+      padding: 20px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      border-radius: 8px;
+    }
+    h1 {
+      text-align: center;
+      color: #333;
+    }
+    h5 {
+      color: #333;
+    }
+    .form-select {
+      width: 100%;
+      padding: 8px;
+      margin-top: 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+    #chart {
+      margin-top: 20px;
+    }
+  </style>
 </head>
 <body>
-  <div class="row">
-    <div class="col-md-12">
-      <h5>State:</h5>
-      <select title="states" class="form-select" id="selDataset" onchange="optionChanged(this.value)"></select>
+  <div class="container">
+    <h1>Rent Data Visualization</h1>
+    <div class="row">
+      <div class="col-md-12">
+        <h5>Select State:</h5>
+        <select title="states" class="form-select" id="selDataset" onchange="optionChanged(this.value)">
+        </select>
+      </div>
     </div>
+    <div id="chart"></div>
   </div>
-  <div id="chart"></div>
   <script>
     // Initializes the page with a default plot
     function init() {
@@ -61,7 +98,6 @@
           type: 'scatter'
         };
 
-
         const trace2 = {
           x: years,
           y: avgTwoBedroomPrices,
@@ -69,22 +105,25 @@
           name: 'Avg Two Bedroom Rent',
           type: 'scatter'
         };
+
         const trace3 = {
           x: years,
-          y: avgTwoBedroomPrices,
+          y: avgThreeBedroomPrices,
           mode: 'lines+markers',
           name: 'Avg Three Bedroom Rent',
           type: 'scatter'
         };
+
         const trace4 = {
           x: years,
-          y: avgTwoBedroomPrices,
+          y: avgFourBedroomPrices,
           mode: 'lines+markers',
           name: 'Avg Four Bedroom Rent',
           type: 'scatter'
         };
+
         // Plotly data and layout
-        const dataToPlot = [tracestudio,trace1, trace2,trace3,trace4];
+        const dataToPlot = [tracestudio, trace1, trace2, trace3, trace4];
         const layout = {
           title: `Average Rent Prices in ${state}`,
           xaxis: { title: 'Year' },

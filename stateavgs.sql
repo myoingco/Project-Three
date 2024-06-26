@@ -32,4 +32,3 @@ ORDER BY
     State, 
     Year;
 	
-Select * from StateAvgs
