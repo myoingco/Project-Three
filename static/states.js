@@ -81,3 +81,6 @@ function optionChanged(state) {
     console.error('Invalid state abbreviation:', state);
   }
 }
+
+// Initialize the default plot with studio data
+optionChanged('AZ');

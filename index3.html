@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Population vs. Rental Prices</title>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f2f5;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            width: 80%;
+            margin: 50px auto;
+            background: #ffffff;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        h5 {
+            color: #333;
+        }
+        .form-select {
+            width: 100%;
+            padding: 8px;
+            margin-top: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        #scatterPlot {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Population vs. Rental Prices</h1>
+        <div class="row">
+            <div class="col-md-12">
+                <h5>Select Number of Bedrooms:</h5>
+                <select title="bedrooms" class="form-select" id="bedroomDropdown" onchange="scatterplotchange(this.value)">
+                    <option value="studio">Studio</option>
+                    <option value="one_bedroom">One Bedroom</option>
+                    <option value="two_bedroom">Two Bedrooms</option>
+                    <option value="three_bedroom">Three Bedrooms</option>
+                    <option value="four_bedroom">Four Bedrooms</option>
+                </select>
+            </div>
+        </div>
+        <div id="scatterPlot"></div>
+    </div>
+    <script src="static/states3.js"></script>
+</body>
+</html>

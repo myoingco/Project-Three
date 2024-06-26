@@ -13,7 +13,7 @@ engine = create_engine("postgresql+psycopg2://postgres:postgres@localhost:5432/p
 # Use inspector to check tables
 inspector = inspect(engine)
 tables = inspector.get_table_names()
-print(tables)
+
 
 # Reflect an existing database into a new model
 Base = automap_base()
@@ -21,29 +21,19 @@ Base = automap_base()
 # Reflect the tables
 Base.prepare(autoload_with=engine)
 # Print the names of the reflected tables
-print("Reflected tables:", Base.classes.keys())
+
 
 # Save reference to the table named 'rent' if it exists
-if 'rent' in Base.classes:
-    Rent = Base.classes.rent
-    rent_columns = Rent.__table__.columns.keys()
-    print("Columns in 'rent' table:", rent_columns)
-else:
-    print("Table 'rent' not found.")
 
-if 'stateavgs' in Base.classes:
-    StateAvgs = Base.classes.stateavgs
-    StateAvgs_columns = StateAvgs.__table__.columns.keys()
-    print("Columns in 'StateAvgs' table:", StateAvgs_columns)
-else:
-    print("Table 'StateAvgs' not found.")
+Rent = Base.classes.rent
+StateAvgs = Base.classes.stateavgs
+RentDollarChange = Base.classes.rentdollarchange
 
-if 'rentdollarchange' in Base.classes:
-    RentDollarChange = Base.classes.rentdollarchange
-    RentDollarChange_columns = RentDollarChange.__table__.columns.keys()
-    print("Columns in 'RentDollarChange' table:", RentDollarChange_columns)
-else:
-    print("Table 'RentDollarChange' not found.")
+rent_columns = Rent.__table__.columns.keys()
+print("Columns in 'rent' table:", rent_columns)
+
+
+
 #################################################
 # Flask Setup
 #################################################
@@ -62,6 +52,8 @@ def welcome():
         "Available Routes:<br/>"
         "/statedata<br/>"
         "/rankingdata<br/>"
+        "/scatterplot<br/>"
+        "/api/scatterplot<br/>"
         "/api/rentdollarchange<br/>"
         "/api/stateavg/<state><br/>"
         "/api/alldata<br/>"
@@ -72,6 +64,49 @@ def index():
     """Render the home page"""
     return render_template('template3.html')
 
+@app.route("/scatterplot")
+def scatterplot():
+    """Render the scatter plot page"""
+    return render_template('index3.html')
+
+@app.route("/api/scatterplot")
+def rentpopulation():
+    """Retrieve rent dollar change data for all states and specified bedroom count"""
+    bedroom_count = request.args.get('bedrooms', default='studio', type=str).lower()
+    column_mapping = {
+        'studio': 'studio',
+        'one_bedroom': 'one_bedroom',
+        'two_bedroom': 'two_bedroom',
+        'three_bedroom': 'three_bedroom',
+        'four_bedroom': 'four_bedroom'
+    }
+
+    if bedroom_count not in column_mapping:
+        return jsonify({"error": "Invalid bedroom count specified"}), 400
+
+    session = Session(engine)
+    try:
+        results = session.query(
+            Rent.population,
+            func.concat(Rent.county, func.concat(' (', Rent.state, ')')).label('county_state'),
+            getattr(Rent, column_mapping[bedroom_count])
+        ).all()
+
+        coorelation = [
+            {
+                "population": x[0],
+                "county_state": x[1],
+                "rent_price": x[2]
+            }
+        for x in results]
+
+        session.close()
+        return jsonify(coorelation)
+    except Exception as e:
+        session.close()
+        print(f"Error retrieving rent dollar change data: {e}")
+        return jsonify({"error": str(e)}), 500
+    
 @app.route("/statedata")
 def statedata():
     """Render the statedata page"""

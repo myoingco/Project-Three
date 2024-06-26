@@ -48,7 +48,7 @@ function bedroomOptionChanged(bedrooms) {
         t: 50, // Top margin
         b: 150 // Bottom margin to accommodate the rotated labels
       },
-      width: 1200 // Increase the width of the chart
+      width: 1400 // Increase the width of the chart
     };
 
     Plotly.newPlot('barChart', dataToPlot, layout);
