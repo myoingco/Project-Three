@@ -34,7 +34,7 @@ function bedroomOptionChanged(bedrooms) {
     // Plot the bar chart
     let dataToPlot = [trace];
     let layout = {
-      title: `Rent Dollar Change for ${bedrooms.replace('_', ' ').capitalize()}s`,
+      title: `Changes in Rent Prices of ${bedrooms.replace('_', ' ').capitalize()}s`,
       xaxis: { 
         title: 'State',
         tickangle: -45, // Rotate x-axis labels
@@ -43,7 +43,9 @@ function bedroomOptionChanged(bedrooms) {
           size: 10 // Make x-axis labels smaller
         }
       },
-      yaxis: { title: 'Rent Dollar Change' },
+      yaxis: { title: 'Change in Rent Price',
+      tickformat: '$,.0f' // Format the y-axis labels in $0,00 format
+      },
       margin: {
         t: 50, // Top margin
         b: 150 // Bottom margin to accommodate the rotated labels

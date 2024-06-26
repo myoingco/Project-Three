@@ -30,9 +30,11 @@ function scatterplotchange(bedrooms) {
         // Plotly data and layout
         let dataToPlot = [trace];
         let layout = {
-            title: `Population vs. Rental Prices (${bedrooms.replace('_', ' ').capitalize()} Bedrooms)`,
+            title: `Population vs. Rental Prices (${bedrooms.replace('_', ' ').capitalize()})`,
             xaxis: { title: 'Population' },
-            yaxis: { title: 'Rental Prices' }
+            yaxis: { title: 'Rental Prices',
+                tickformat: '$,.0f' // Format the y-axis labels in $0,00 format
+                }
         };
 
         // Plot the scatter plot

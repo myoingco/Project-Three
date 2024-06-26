@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rent Data Visualization</title>
+    <title>State Ranks</title>
     <script src="https://d3js.org/d3.v7.min.js"></script>
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
     <style>
@@ -12,6 +12,22 @@
             background-color: #f0f2f5;
             margin: 0;
             padding: 0;
+            }
+            .navbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background-color: #333;
+        padding: 10px 20px;
+        color: white;
+        }
+        .navbar a {
+        color: white;
+        text-decoration: none;
+        padding: 0 15px;
+        }
+        .navbar a:hover {
+        text-decoration: underline;
         }
         .container {
             width: 80%;
@@ -29,9 +45,8 @@
             color: #333;
         }
         .form-select {
-            width: 100%;
+            width: auto;
             padding: 8px;
-            margin-top: 10px;
             border: 1px solid #ccc;
             border-radius: 4px;
         }
@@ -41,8 +56,11 @@
     </style>
 </head>
 <body>
+    <div class="navbar">
+        <a href="/">Home</a>
+    </div>
     <div class="container">
-        <h1>Rent Data Visualization</h1>
+        <h1>Changes in Rent, Ranked By State</h1>
         <div class="row">
             <div class="col-md-12">
                 <h5>Select Number of Bedrooms:</h5>

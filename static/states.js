@@ -70,7 +70,9 @@ function optionChanged(state) {
       let layout = {
         title: `Average Rent Prices in ${state}`,
         xaxis: { title: 'Year' },
-        yaxis: { title: 'Average Rent Price' }
+        yaxis: { title: 'Average Rent Price',
+          tickformat: '$,.0f' // Format the y-axis labels in $0,00 format
+          }
       };
 
       Plotly.newPlot('chart', dataToPlot, layout);

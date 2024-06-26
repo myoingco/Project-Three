@@ -29,8 +29,6 @@ Rent = Base.classes.rent
 StateAvgs = Base.classes.stateavgs
 RentDollarChange = Base.classes.rentdollarchange
 
-rent_columns = Rent.__table__.columns.keys()
-print("Columns in 'rent' table:", rent_columns)
 
 
 
@@ -50,9 +48,9 @@ def welcome():
     """List all available api routes."""
     return (
         "Available Routes:<br/>"
-        "/statedata<br/>"
-        "/rankingdata<br/>"
-        "/scatterplot<br/>"
+        "/statetrends<br/>"
+        "/stateranks<br/>"
+        "/pricevspop<br/>"
         "/api/scatterplot<br/>"
         "/api/rentdollarchange<br/>"
         "/api/stateavg/<state><br/>"
@@ -64,8 +62,8 @@ def index():
     """Render the home page"""
     return render_template('template3.html')
 
-@app.route("/scatterplot")
-def scatterplot():
+@app.route("/pricevspop")
+def pricevspop():
     """Render the scatter plot page"""
     return render_template('index3.html')
 
@@ -107,14 +105,14 @@ def rentpopulation():
         print(f"Error retrieving rent dollar change data: {e}")
         return jsonify({"error": str(e)}), 500
     
-@app.route("/statedata")
-def statedata():
-    """Render the statedata page"""
+@app.route("/statetrends")
+def statetrends():
+    """Render the statetrends page"""
     return render_template('index.html')
 
-@app.route("/rankingdata")
-def rankingdata():
-    """Render the statedata page"""
+@app.route("/stateranks")
+def stateranks():
+    """Render the stateranks page"""
     return render_template('index2.html')
 
 @app.route("/api/stateavg/<state>")
