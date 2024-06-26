@@ -9,8 +9,10 @@
 <body>
     <header>
         <div class="container">
-            <h1>Rent Increases by State</h1>
-            <p>Explore the trends and changes in rent prices across different states.</p>
+            <h1>Rent Increases Throughout the United States</h1>
+            <p>
+                From 2017 to 2024, the United States experienced significant increases in rental prices across various regions and property types. This upward trend was driven by a combination of factors including a growing demand for rental housing, limited housing supply, and economic fluctuations. Major urban areas saw the most pronounced spikes, with rents for studio and one-bedroom apartments rising notably. The impact of the COVID-19 pandemic also played a role, disrupting construction and altering migration patterns, thereby influencing rental markets nationwide. 
+            <p>    
         </div>
     </header>
 
@@ -18,15 +20,7 @@
         <section class="content">
             <div class="container">
                 <h2>Overview</h2>
-                <p>Insert a brief overview or introduction to your data and what visitors can expect.</p>
-            </div>
-        </section>
-
-        <section class="data">
-            <div class="container">
-                <h2>Data Visualization</h2>
-                <div id="chart"></div> <!-- Placeholder for your interactive chart -->
-                <p>Provide a brief description of the visualization and how users can interact with it.</p>
+                <p>Below are links to various interactive charts that will show how rent prices increased on a state-by-state basis from studio apartments to four-bedroom apartments.</p>
             </div>
         </section>
 
@@ -34,18 +28,19 @@
             <div class="container">
                 <h2>Interactive Data</h2>
                 <!-- Link to the rankingdata route -->
-                <a href="/stateranks">State Ranking of Rent Changes</a><br>
                 <a href="/statetrends">Trends by State</a><br>
+                <a href="/stateranks">State Ranking of Rent Changes</a><br>
                 <a href="/pricevspop">Population and Rent Price Correlation</a>
             </div>
         </section>
     </main>
-
-    <footer>
-        <div class="container">
-            <p>&copy; 2024 Your Company Name. All rights reserved.</p>
-        </div>
-    </footer>
+    <p>Data Sources:<br />
+        <ul>
+            <li>
+                <a href="https://www.huduser.gov/portal/datasets/fmr.html#data_2024">HUD’s Office of Policy Development and Research (PD&R) Fair Market Rents</a>
+            </li>
+        </ul>
+    </p>
 
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script> <!-- Include Plotly library -->
     <script src="scripts.js"></script> <!-- Your custom JavaScript file -->
