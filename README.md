@@ -47,19 +47,23 @@ Prior to execution, you must have Visual Studio Code (VSCode) downloaded, Postgr
     
     Homepage:
     
-    /files-pri/T06D761L99C-F079VS1CSLV/image.png
+   ![image](https://github.com/myoingco/Project-Three/assets/160566342/6cd6b7cf-2de3-4e6c-9742-56e24a879a03)
+
     
     Rent Price Trends By State:
     
-    /files-pri/T06D761L99C-F07A17QN52Q/image.png
+    ![image](https://github.com/myoingco/Project-Three/assets/160566342/42d87baa-e3f5-45eb-b362-29a972464c44)
+
     
     Changes in Rent, Ranked By State
     
-    /files-pri/T06D761L99C-F079S4GKZQE/image.png
+    ![image](https://github.com/myoingco/Project-Three/assets/160566342/c7a479a0-7709-469b-af74-e2c23ba26d8a)
+
     
     Population vs. Rental Prices
     
-    /files-pri/T06D761L99C-F07A17TPERJ/image.png
+    ![image](https://github.com/myoingco/Project-Three/assets/160566342/7519fbaa-628d-4cae-810a-17d9c5d00645)
+
     
     
 ## Analysis
