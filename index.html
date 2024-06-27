@@ -16,19 +16,24 @@
     }
     .navbar {
       display: flex;
-      justify-content: space-between;
-      align-items: center;
+      justify-content: flex-start;
       background-color: #333;
-      padding: 10px 20px;
-      color: white;
+      padding: 14px 20px;
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 1000;
     }
     .navbar a {
       color: white;
+      text-align: center;
+      padding: 14px 20px;
       text-decoration: none;
-      padding: 0 15px;
+      font-size: 17px;
     }
     .navbar a:hover {
-      text-decoration: underline;
+      background-color: #ddd;
+      color: black;
     }
     .container {
       width: 80%;
